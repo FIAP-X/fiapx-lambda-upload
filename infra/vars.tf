@@ -29,13 +29,13 @@ variable "lambda_zip_path" {
   default     = "../lambda_function.zip"
 }
 
-variable "aws_access_key_id" {
+variable "lambda_aws_access_key_id" {
   description = "AWS Access Key ID"
   type        = string
   sensitive   = true
 }
 
-variable "aws_secret_access_key" {
+variable "lambda_aws_secret_access_key" {
   description = "AWS Secret Access Key"
   type        = string
   sensitive   = true
