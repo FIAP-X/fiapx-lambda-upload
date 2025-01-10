@@ -9,8 +9,8 @@ resource "aws_lambda_function" "lambda_upload" {
   environment {
     variables = {
       REGION_NAME           = var.aws_region
-      AWS_ACCESS_KEY_ID     = var.aws_access_key_id
-      AWS_SECRET_ACCESS_KEY = var.aws_secret_access_key
+      LAMBDA_AWS_ACCESS_KEY_ID     = var.lambda_aws_access_key_id
+      LAMBDA_AWS_SECRET_ACCESS_KEY = var.lambda_aws_secret_access_key
       BUCKET_NAME           = var.bucket_name
     }
   }
