@@ -42,9 +42,15 @@ jobs:
       - name: Export AWS credentials
         run: |
           echo "Exporting AWS credentials for Terraform..."
-          export aws_access_key_id=${{ secrets.AWS_ACCESS_KEY_ID }}
-          export aws_secret_access_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          export aws_session_token=${{ secrets.AWS_SESSION_TOKEN }}
+          echo "aws_access_key_id=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
+          echo "aws_secret_access_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
+          echo "aws_session_token=${{ secrets.AWS_SESSION_TOKEN }}" >> $GITHUB_ENV
+      
+      - name: Check environment variables
+        run: |
+          echo "aws_access_key_id = $aws_access_key_id"
+          echo "aws_secret_access_key = $aws_secret_access_key"
+          echo "aws_session_token = $aws_session_token"   
 
       - name: Terraform Init
         run: terraform init
