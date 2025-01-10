@@ -1,2 +1,2 @@
-lambda_aws_access_key_id     = "ASIA2VKUD45EPKPKA5R7"
-lambda_aws_secret_access_key = "KjzQfG7SCdh7Dzlz/vEqs9iLq7jiUnXZ1GNQsmGc"
+lambda_aws_access_key_id     = "ASIA2VKUD45EBXMUSIRT"
+lambda_aws_secret_access_key = "x3LwSAkvSo4epcihr/QgYGdPdv+jRLv4jST3mwD0"
