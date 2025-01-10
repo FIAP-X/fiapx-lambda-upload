@@ -1,6 +1,6 @@
 import os
 from unittest import TestCase, mock
-from lambda_function import lambda_handler
+from src.lambda_function import lambda_handler
 
 class TestLambdaHandler(TestCase):
 
