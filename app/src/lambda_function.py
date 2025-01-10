@@ -6,7 +6,7 @@ def lambda_handler(event, context):
     region_name = os.environ['REGION_NAME']
     access_key_id = os.environ['AWS_ACCESS_KEY_ID']
     secret_access_key = os.environ['AWS_SECRET_ACCESS_KEY']
-    session_token = os.environ.get['AWS_SESSION_TOKEN']
+    session_token = os.environ.get('AWS_SESSION_TOKEN', None)
     bucket_name = os.environ['BUCKET_NAME']
 
     s3_client = boto3.client(

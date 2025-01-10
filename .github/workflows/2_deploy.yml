@@ -37,14 +37,7 @@ jobs:
         working-directory: app/src
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
-
-      - name: Export AWS credentials
-        run: |
-          echo "Exporting AWS credentials for Terraform..."
-          export TF_VAR_aws_access_key_id=${{ env.AWS_ACCESS_KEY_ID }}
-          export TF_VAR_aws_secret_access_key=${{ env.AWS_SECRET_ACCESS_KEY }}
-          export TF_VAR_aws_session_token=${{ env.AWS_SESSION_TOKEN }}  
+        uses: hashicorp/setup-terraform@v2 
 
       - name: Terraform Init
         run: terraform init

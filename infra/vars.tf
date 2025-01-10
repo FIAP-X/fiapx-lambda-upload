@@ -41,12 +41,6 @@ variable "aws_secret_access_key" {
   sensitive   = true
 }
 
-variable "aws_session_token" {
-  description = "AWS Session Token"
-  type        = string
-  sensitive   = true
-}
-
 variable "bucket_name" {
   description = "Nome do bucket S3"
   type        = string
