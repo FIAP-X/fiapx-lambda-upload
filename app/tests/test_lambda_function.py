@@ -27,3 +27,6 @@ class TestLambdaHandler(TestCase):
         response = lambda_handler({}, None)
         self.assertEqual(response['statusCode'], 500)
         self.assertIn("Erro simulado ao conectar com o S3", response['body'])
+
+if __name__ == '__main__':
+    unittest.main()
