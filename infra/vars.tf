@@ -44,5 +44,4 @@ variable "lambda_aws_secret_access_key" {
 variable "bucket_name" {
   description = "Nome do bucket S3"
   type        = string
-  default     = "fiapx-bucket-upload"
 }
