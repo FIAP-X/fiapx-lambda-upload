@@ -60,13 +60,3 @@ variable "cognito_user_pool_arn" {
   description = "ARN do Cognito User Pool"
   type        = string
 }
-
-variable "cognito_user_pool_id" {
-  description = "O ID do pool de usuários do Cognito"
-  type        = string
-}
-
-variable "cognito_app_client_id" {
-  description = "O ID do cliente do aplicativo no Cognito"
-  type        = string
-}
