@@ -22,11 +22,20 @@ resource "aws_api_gateway_resource" "lambda_resource" {
   path_part   = "generate-url"
 }
 
+resource "aws_api_gateway_authorizer" "cognito_authorizer" {
+  name            = "CognitoAuthorizer"
+  rest_api_id     = var.api_gateway_id
+  authorizer_uri  = "arn:aws:apigateway:${var.aws_region}:cognito-idp:action"
+  identity_source = "method.request.header.Authorization"
+  provider_arns   = [var.cognito_user_pool_arn]
+  type            = "COGNITO_USER_POOLS"
+}
+
 resource "aws_api_gateway_method" "lambda_method" {
   rest_api_id   = var.api_gateway_id
   resource_id   = aws_api_gateway_resource.lambda_resource.id
   http_method   = "POST"
-  authorization = "NONE"
+  authorization = aws_api_gateway_authorizer.cognito_authorizer.id
 }
 
 resource "aws_api_gateway_integration" "lambda_integration" {
