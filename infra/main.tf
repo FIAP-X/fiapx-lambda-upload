@@ -18,7 +18,6 @@ resource "aws_lambda_function" "lambda_upload" {
 
 resource "aws_api_gateway_resource" "lambda_resource" {
   rest_api_id = var.api_gateway_id
-  parent_id   = aws_api_gateway_rest_api.api_gateway.root_resource_id
   path_part   = "generate-url"
 }
 
@@ -35,13 +34,13 @@ resource "aws_api_gateway_integration" "lambda_integration" {
   http_method             = aws_api_gateway_method.lambda_method.http_method
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri                     = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${aws_lambda_function.my_lambda.arn}/invocations"
+  uri                     = "arn:aws:apigateway:${var.aws_region}:lambda:path/2015-03-31/functions/${aws_lambda_function.lambda_upload.arn}/invocations"
 }
 
 resource "aws_lambda_permission" "allow_api_gateway" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.my_lambda.function_name
+  function_name = aws_lambda_function.lambda_upload.function_name
   principal     = "apigateway.amazonaws.com"
 }
 
