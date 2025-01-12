@@ -44,7 +44,7 @@ resource "aws_lambda_permission" "allow_api_gateway" {
   function_name = aws_lambda_function.lambda_upload.function_name
   principal     = "apigateway.amazonaws.com"
 
-    depends_on = [
+  depends_on = [
     aws_api_gateway_integration.lambda_integration
   ]
 }
@@ -53,7 +53,7 @@ resource "aws_api_gateway_deployment" "api_deployment" {
   rest_api_id = var.api_gateway_id
   stage_name  = "prod"
 
-    depends_on = [
+  depends_on = [
     aws_lambda_permission.allow_api_gateway,
     aws_api_gateway_integration.lambda_integration
   ]
