@@ -42,6 +42,9 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
+      - name: Terraform Format Fix
+        run: terraform fmt -write=true 
+
       - name: Terraform Fmt
         run: terraform fmt -check -no-color  
 

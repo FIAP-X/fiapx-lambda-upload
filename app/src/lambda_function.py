@@ -1,5 +1,6 @@
 import os
 import boto3
+import json
 from botocore.config import Config
 
 def lambda_handler(event, context):
@@ -25,7 +26,7 @@ def lambda_handler(event, context):
             ExpiresIn=60,
         )
 
-        return {"statusCode": 200, "body": url}
+        return {"statusCode": 200, "body": json.dumps({"url": url})}
 
     except Exception as e:
-        return {"statusCode": 500, "body": str(e)}
+        return {"statusCode": 500, "body": json.dumps({"error": str(e)})}
