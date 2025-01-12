@@ -37,10 +37,6 @@ resource "aws_api_gateway_method" "lambda_method" {
   authorization = "COGNITO_USER_POOLS"
   authorizer_id = aws_api_gateway_authorizer.cognito_authorizer.id
 
-  request_parameters = {
-    "method.request.header.Authorization" = true
-  }
-
   depends_on = [
     aws_api_gateway_authorizer.cognito_authorizer
   ]
