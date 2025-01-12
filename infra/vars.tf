@@ -45,3 +45,8 @@ variable "bucket_name" {
   description = "Nome do bucket S3"
   type        = string
 }
+
+variable "api_gateway_id" {
+  description = "ID do API Gateway"
+  type        = string
+}
