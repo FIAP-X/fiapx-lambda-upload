@@ -32,10 +32,15 @@ resource "aws_api_gateway_authorizer" "cognito_authorizer" {
 }
 
 resource "aws_api_gateway_method" "lambda_method" {
-  rest_api_id   = var.api_gateway_id
-  resource_id   = aws_api_gateway_resource.lambda_resource.id
-  http_method   = "POST"
-  authorization = aws_api_gateway_authorizer.cognito_authorizer.id
+  rest_api_id      = var.api_gateway_id
+  resource_id      = aws_api_gateway_resource.lambda_resource.id
+  http_method      = "POST"
+  authorization    = "COGNITO_USER_POOLS"
+  authorization_id = aws_api_gateway_authorizer.cognito_authorizer.id
+
+depends_on = [
+  aws_api_gateway_authorizer.cognito_authorizer
+]
 }
 
 resource "aws_api_gateway_integration" "lambda_integration" {
