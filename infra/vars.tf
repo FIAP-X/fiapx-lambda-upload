@@ -55,3 +55,8 @@ variable "api_gateway_root_resource_id" {
   description = "ID do recurso raiz da API Gateway"
   type        = string
 }
+
+variable "cognito_user_pool_arn" {
+  description = "ARN do Cognito User Pool"
+  type        = string
+}
