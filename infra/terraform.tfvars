@@ -1,2 +1,3 @@
-lambda_aws_access_key_id     = "ASIA2VKUD45EBXMUSIRT"
-lambda_aws_secret_access_key = "x3LwSAkvSo4epcihr/QgYGdPdv+jRLv4jST3mwD0"
+lambda_aws_access_key_id     = "ASIA2VKUD45EB37AY27P"
+lambda_aws_secret_access_key = "yuSGaJRovYIHpxqhOZd/gwM8HFjCs14Th0GkX4en"
+bucket_name                  = "fiapx-bucket-upload"

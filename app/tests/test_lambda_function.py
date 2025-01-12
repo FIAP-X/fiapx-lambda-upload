@@ -1,9 +1,6 @@
 import unittest
 
-class TestEmpty(unittest.TestCase):
+class TestLambdaFunction(unittest.TestCase):
 
-    def test_empty(self):
-        print("Testado")
-
-if __name__ == '__main__':
-    unittest.main()
+    def test_correct_answer(self):
+        print('Testado!')
