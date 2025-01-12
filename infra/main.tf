@@ -49,9 +49,18 @@ resource "aws_lambda_permission" "allow_api_gateway" {
   ]
 }
 
+resource "aws_api_gateway_stage" "api_stage" {
+  stage_name    = "prod"
+  rest_api_id   = var.api_gateway_id
+  deployment_id = aws_api_gateway_deployment.api_deployment.id
+
+  depends_on = [
+    aws_api_gateway_deployment.api_deployment
+  ]
+}
+
 resource "aws_api_gateway_deployment" "api_deployment" {
   rest_api_id = var.api_gateway_id
-  stage_name  = "prod"
 
   depends_on = [
     aws_lambda_permission.allow_api_gateway,
