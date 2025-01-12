@@ -27,14 +27,19 @@ resource "aws_api_gateway_authorizer" "cognito_authorizer" {
   rest_api_id     = var.api_gateway_id
   identity_source = "method.request.header.Authorization"
   provider_arns   = [var.cognito_user_pool_arn]
-  type            = "COGNITO_USER_POOLS"
+  type            = "JWT"
+
+  jwt_configuration {
+    audience = [var.cognito_app_client_id] 
+    issuer   = "https://cognito-idp.${var.aws_region}.amazonaws.com/${var.cognito_user_pool_id}"
+  }
 }
 
 resource "aws_api_gateway_method" "lambda_method" {
   rest_api_id   = var.api_gateway_id
   resource_id   = aws_api_gateway_resource.lambda_resource.id
   http_method   = "POST"
-  authorization = "COGNITO_USER_POOLS"
+  authorization = "JWT"
   authorizer_id = aws_api_gateway_authorizer.cognito_authorizer.id
 
 depends_on = [
