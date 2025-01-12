@@ -18,6 +18,7 @@ resource "aws_lambda_function" "lambda_upload" {
 
 resource "aws_api_gateway_resource" "lambda_resource" {
   rest_api_id = var.api_gateway_id
+  parent_id   = var.api_gateway_root_resource_id
   path_part   = "generate-url"
 }
 
