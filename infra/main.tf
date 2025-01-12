@@ -24,10 +24,9 @@ resource "aws_api_gateway_resource" "lambda_resource" {
 
 resource "aws_api_gateway_authorizer" "cognito_authorizer" {
   name            = "CognitoUserPoolAuthorizer"
-  rest_api_id     = var.api_gateway_id
-  identity_source = "method.request.header.Authorization"
-  provider_arns   = [var.cognito_user_pool_arn]
   type            = "COGNITO_USER_POOLS"
+  rest_api_id     = var.api_gateway_id
+  provider_arns   = [var.cognito_user_pool_arn]
 }
 
 resource "aws_api_gateway_method" "lambda_method" {
