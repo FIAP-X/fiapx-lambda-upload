@@ -67,7 +67,8 @@ resource "aws_api_gateway_deployment" "api_deployment" {
 
   depends_on = [
     aws_lambda_permission.allow_api_gateway,
-    aws_api_gateway_integration.lambda_integration
+    aws_api_gateway_integration.lambda_integration,
+    aws_api_gateway_method.lambda_method
   ]
 }
 
