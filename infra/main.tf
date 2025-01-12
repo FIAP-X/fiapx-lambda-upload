@@ -49,6 +49,15 @@ resource "aws_lambda_permission" "allow_api_gateway" {
   ]
 }
 
+resource "aws_api_gateway_deployment" "api_deployment" {
+  rest_api_id = var.api_gateway_id
+
+  depends_on = [
+    aws_lambda_permission.allow_api_gateway,
+    aws_api_gateway_integration.lambda_integration
+  ]
+}
+
 resource "aws_api_gateway_stage" "api_stage" {
   stage_name    = "prod"
   rest_api_id   = var.api_gateway_id
@@ -56,14 +65,5 @@ resource "aws_api_gateway_stage" "api_stage" {
 
   depends_on = [
     aws_api_gateway_deployment.api_deployment
-  ]
-}
-
-resource "aws_api_gateway_deployment" "api_deployment" {
-  rest_api_id = var.api_gateway_id
-
-  depends_on = [
-    aws_lambda_permission.allow_api_gateway,
-    aws_api_gateway_integration.lambda_integration
   ]
 }
