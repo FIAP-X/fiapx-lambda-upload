@@ -55,20 +55,10 @@ resource "aws_lambda_permission" "allow_api_gateway" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.lambda_upload.function_name
   principal     = "apigateway.amazonaws.com"
-
-  depends_on = [
-    aws_api_gateway_integration.lambda_integration
-  ]
 }
 
 resource "aws_api_gateway_deployment" "api_deployment" {
   rest_api_id = var.api_gateway_id
-
-  depends_on = [
-    aws_lambda_permission.allow_api_gateway,
-    aws_api_gateway_integration.lambda_integration,
-    aws_api_gateway_method.lambda_method
-  ]
 }
 
 resource "aws_api_gateway_stage" "api_stage" {
