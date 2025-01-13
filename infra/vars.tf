@@ -4,16 +4,6 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
-variable "lambda_function_name" {
-  description = "Nome da função Lambda"
-  default     = "fiapx-lambda-upload"
-}
-
-variable "lambda_handler" {
-  description = "Handler da função Lambda"
-  default     = "lambda_function.lambda_handler"
-}
-
 variable "lambda_runtime" {
   description = "Ambiente de execução"
   default     = "python3.12"
@@ -21,7 +11,7 @@ variable "lambda_runtime" {
 
 variable "lambda_role" {
   description = "ARN da role IAM"
-  default     = "arn:aws:iam::733005211464:role/LabRole"
+  type        = string
 }
 
 variable "lambda_zip_path" {
@@ -41,7 +31,7 @@ variable "lambda_aws_secret_access_key" {
   sensitive   = true
 }
 
-variable "bucket_name" {
+variable "bucket_upload_name" {
   description = "Nome do bucket S3"
   type        = string
 }
