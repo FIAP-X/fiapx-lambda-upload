@@ -1,6 +1,7 @@
+lambda_role                  = "arn:aws:iam::733005211464:role/LabRole"
 lambda_aws_access_key_id     = "ASIA2VKUD45EB37AY27P"
 lambda_aws_secret_access_key = "yuSGaJRovYIHpxqhOZd/gwM8HFjCs14Th0GkX4en"
-bucket_name                  = "fiapx-bucket-upload"
+bucket_upload_name           = "fiapx-bucket-upload"
 api_gateway_id               = "4qw55djoj4"
 api_gateway_root_resource_id = "idl5uc2v34"
 cognito_user_pool_arn        = "arn:aws:cognito-idp:us-east-1:733005211464:userpool/us-east-1_XPCibTOvX"

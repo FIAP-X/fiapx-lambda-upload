@@ -1,6 +1,6 @@
 resource "aws_lambda_function" "lambda_upload" {
-  function_name    = var.lambda_function_name
-  handler          = var.lambda_handler
+  function_name    = "fiapx-lambda-upload"
+  handler          = "lambda_function.lambda_handler"
   runtime          = var.lambda_runtime
   role             = var.lambda_role
   filename         = var.lambda_zip_path
@@ -11,7 +11,7 @@ resource "aws_lambda_function" "lambda_upload" {
       REGION_NAME                  = var.aws_region
       LAMBDA_AWS_ACCESS_KEY_ID     = var.lambda_aws_access_key_id
       LAMBDA_AWS_SECRET_ACCESS_KEY = var.lambda_aws_secret_access_key
-      BUCKET_NAME                  = var.bucket_name
+      BUCKET_NAME                  = var.bucket_upload_name
     }
   }
 }
@@ -55,20 +55,10 @@ resource "aws_lambda_permission" "allow_api_gateway" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.lambda_upload.function_name
   principal     = "apigateway.amazonaws.com"
-
-  depends_on = [
-    aws_api_gateway_integration.lambda_integration
-  ]
 }
 
 resource "aws_api_gateway_deployment" "api_deployment" {
   rest_api_id = var.api_gateway_id
-
-  depends_on = [
-    aws_lambda_permission.allow_api_gateway,
-    aws_api_gateway_integration.lambda_integration,
-    aws_api_gateway_method.lambda_method
-  ]
 }
 
 resource "aws_api_gateway_stage" "api_stage" {
