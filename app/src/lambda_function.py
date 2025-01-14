@@ -1,6 +1,7 @@
 import os
-import boto3
 import json
+import uuid
+import boto3
 from botocore.config import Config
 
 def lambda_handler(event, context):
@@ -20,10 +21,19 @@ def lambda_handler(event, context):
             config=Config(signature_version="s3v4")
         )
 
+        user_id = event['requestContext']['authorizer']['claims']['sub']
+
+        unique_key = str(uuid.uuid4())
+
+        key = f'videos/{user_id}/{unique_key}'
+
         url = s3_client.generate_presigned_url(
-            ClientMethod='put_object',
-            Params={'Bucket': bucket_name, 'Key': 'videos/video.mkv'},
-            ExpiresIn=60,
+            ClientMethod = 'put_object',
+            Params = {
+                'Bucket': bucket_name,
+                'Key': key
+            },
+            ExpiresIn = 3600,
         )
 
         return {"statusCode": 200, "body": json.dumps({"url": url})}
