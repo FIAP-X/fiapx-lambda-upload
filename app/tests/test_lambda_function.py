@@ -73,6 +73,7 @@ class TestLambdaHandler(unittest.TestCase):
     @patch('lambda_function.boto3.client')
     def test_lambda_handler_missing_env_variable(self, mock_boto_client):
 
+        os.environ.pop('BUCKET_NAME', None)
         os.environ['REGION_NAME'] = 'us-east-1'
         os.environ['LAMBDA_AWS_ACCESS_KEY_ID'] = 'fake-access-key'
         os.environ['LAMBDA_AWS_SECRET_ACCESS_KEY'] = 'fake-secret-key'
